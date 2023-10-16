@@ -15,3 +15,8 @@ export const getMovieById = async id => {
   const { data } = await axios.get(`${BASE_URL}movie/${id}`);
   return data;
 };
+
+export const getMovieCredits = async id => {
+  const { data } = await axios.get(`${BASE_URL}movie/${id}/credits`);
+  return data;
+};

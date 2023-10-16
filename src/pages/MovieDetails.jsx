@@ -1,10 +1,18 @@
 import { getMovieById } from 'components/Services/api';
 import React, { useEffect, useRef, useState } from 'react';
-import { NavLink, useLocation, useParams } from 'react-router-dom';
+import {
+  NavLink,
+  Route,
+  Routes,
+  useLocation,
+  useParams,
+} from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Grid } from 'react-loader-spinner';
 import MovieCard from 'components/MovieCard/MovieCard';
+import Casts from 'components/Casts/Casts';
+import Reviews from 'components/Reviews/Reviews';
 
 const MovieDetails = () => {
   const { movieId } = useParams();
@@ -35,9 +43,12 @@ const MovieDetails = () => {
     };
     fetchMovieById();
   }, [movieId]);
+
   return (
     <>
-      <NavLink className="back" to={backLinkHref.current} />
+      <NavLink className="back" to={backLinkHref.current}>
+        Go back
+      </NavLink>
       {isLoading && (
         <Grid
           height="80"
@@ -51,16 +62,23 @@ const MovieDetails = () => {
         />
       )}
       {error && <ToastContainer />}
+
       {movieCard && <MovieCard movie={movieCard} />}
-      <p> Additional information</p>
+
+      <h3> Additional information</h3>
       <ul>
         <li>
-          <NavLink to="/cast">Casts</NavLink>
+          <NavLink to="cast">Casts</NavLink>
         </li>
         <li>
-          <NavLink to="/reviews">Reviews</NavLink>
+          <NavLink to="reviews">Reviews</NavLink>
         </li>
       </ul>
+
+      <Routes>
+        <Route path="cast" element={<Casts />} />
+        <Route path="reviews" element={<Reviews />} />
+      </Routes>
     </>
   );
 };
