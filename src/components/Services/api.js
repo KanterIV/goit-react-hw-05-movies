@@ -10,3 +10,8 @@ export const getTrendingMovies = async () => {
   const { data } = await axios.get(`${BASE_URL}trending/all/day`);
   return data;
 };
+
+export const getMovieById = async id => {
+  const { data } = await axios.get(`${BASE_URL}movie/${id}`);
+  return data;
+};
