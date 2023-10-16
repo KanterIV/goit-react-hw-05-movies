@@ -3,7 +3,8 @@ import { Link, useLocation } from 'react-router-dom';
 
 const TrendingMovies = ({ movies }) => {
   const defaultImage =
-    'https://pixabay.com/get/gce051c8cb08364d740b7b5d3cdda10533e956f5c16535f92dac2f8c37374dcf8d55d7ba94e7af5f3558a60d6b8d152bb10c3e4e70fa8be0784ebd20aa77c5a25_1280.png';
+    'https://ireland.apollo.olxcdn.com/v1/files/0iq0gb9ppip8-UA/image;s=1000x700';
+
   const location = useLocation();
 
   return (
@@ -26,7 +27,7 @@ const TrendingMovies = ({ movies }) => {
                 }
                 alt={`Card to ${title}`}
               />
-              <p>{title ? title : name}</p>
+              <h2 className="trending-item-title">{title ? title : name}</h2>
             </Link>
           </li>
         ))}

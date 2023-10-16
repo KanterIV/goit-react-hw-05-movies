@@ -3,11 +3,12 @@ import React from 'react';
 const MovieCard = ({ movie }) => {
   const { title, name, poster_path, overview, genres, vote_average } = movie;
   const defaultImage =
-    'https://pixabay.com/get/gce051c8cb08364d740b7b5d3cdda10533e956f5c16535f92dac2f8c37374dcf8d55d7ba94e7af5f3558a60d6b8d152bb10c3e4e70fa8be0784ebd20aa77c5a25_1280.png';
+    'https://ireland.apollo.olxcdn.com/v1/files/0iq0gb9ppip8-UA/image;s=1000x700';
 
   return (
-    <div className="MovieCard">
+    <div className="card-wraper">
       <img
+        className="card-img"
         src={
           poster_path
             ? `https://image.tmdb.org/t/p/w500/${poster_path}`
@@ -16,7 +17,7 @@ const MovieCard = ({ movie }) => {
         width={300}
         alt={`poster to movie: ${title}`}
       />
-      <div>
+      <div className="card-info-wrapper">
         <h1>{title ? title : name}</h1>
         <p>User Score: {vote_average}</p>
         <h2>Overview</h2>
@@ -25,7 +26,7 @@ const MovieCard = ({ movie }) => {
         {genres && (
           <>
             <h2>Genres</h2>
-            <ul>
+            <ul className="genres-list">
               {genres.map(genre => (
                 <li key={genre.id}>{genre.name}</li>
               ))}

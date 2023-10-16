@@ -44,12 +44,16 @@ const Movies = () => {
 
   return (
     <>
-      <form className="form" onSubmit={handleSearchFormSubmit}>
-        <label>
-          <p>Search movie by name</p>
-          <input className="input" type="text" name="searchMovieByName" />
+      <form className="search-form" onSubmit={handleSearchFormSubmit}>
+        <label className="search-form-lable">
+          <p className="search-form-text">Search movie by name</p>
+          <input
+            className="search-form-input"
+            type="text"
+            name="searchMovieByName"
+          />
         </label>
-        <button className="btnSubmit">Submit</button>
+        <button className="search-form-submit">Search</button>
       </form>
       {isLoading && (
         <Grid

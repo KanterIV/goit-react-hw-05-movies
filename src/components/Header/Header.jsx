@@ -5,7 +5,7 @@ import { StyledHeader } from './Header.styled';
 const Header = () => {
   return (
     <StyledHeader>
-      <nav>
+      <nav className="header-nav">
         <ul className="header-list">
           <li>
             <NavLink className="header-link" to="/">

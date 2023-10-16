@@ -1,9 +1,9 @@
+import React, { useEffect, useState } from 'react';
 import { getTrendingMovies } from 'components/Services/api';
 import TrendingMovies from 'components/TrendingMovies/TrendingMovies';
-import React, { useEffect, useState } from 'react';
+import { Grid } from 'react-loader-spinner';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { Grid } from 'react-loader-spinner';
 
 const Home = () => {
   const [trendingMoviesArr, setTrendingMoviesArr] = useState([]);
@@ -32,6 +32,7 @@ const Home = () => {
 
   return (
     <>
+      <h1 className="title">Trending today</h1>
       {isLoading && (
         <Grid
           height="80"

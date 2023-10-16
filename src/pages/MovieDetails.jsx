@@ -11,8 +11,11 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Grid } from 'react-loader-spinner';
 import MovieCard from 'components/MovieCard/MovieCard';
-import Casts from 'components/Casts/Casts';
-import Reviews from 'components/Reviews/Reviews';
+import { lazy } from 'react';
+import { Suspense } from 'react';
+
+const Casts = lazy(() => import('components/Casts/Casts'));
+const Reviews = lazy(() => import('components/Reviews/Reviews'));
 
 const MovieDetails = () => {
   const { movieId } = useParams();
@@ -45,7 +48,7 @@ const MovieDetails = () => {
 
   return (
     <>
-      <NavLink className="back" to={backLinkHref.current}>
+      <NavLink className="backLink" to={backLinkHref.current}>
         Go back
       </NavLink>
       {isLoading && (
@@ -63,21 +66,37 @@ const MovieDetails = () => {
       {error && <ToastContainer />}
 
       {movieCard && <MovieCard movie={movieCard} />}
+      <div className="additional-wrapper">
+        <h3 className="adittional-title"> Additional information</h3>
+        <ul className="adittional-list">
+          <li className="adittional-item">
+            <NavLink to="cast">Casts</NavLink>
+          </li>
+          <li className="adittional-item">
+            <NavLink to="reviews">Reviews</NavLink>
+          </li>
+        </ul>
+      </div>
 
-      <h3> Additional information</h3>
-      <ul>
-        <li>
-          <NavLink to="cast">Casts</NavLink>
-        </li>
-        <li>
-          <NavLink to="reviews">Reviews</NavLink>
-        </li>
-      </ul>
-
-      <Routes>
-        <Route path="cast" element={<Casts />} />
-        <Route path="reviews" element={<Reviews />} />
-      </Routes>
+      <Suspense
+        fallback={
+          <Grid
+            height="80"
+            width="80"
+            color="#4fa94d"
+            ariaLabel="grid-loading"
+            radius="12.5"
+            wrapperStyle={{}}
+            wrapperClass=""
+            visible={true}
+          />
+        }
+      >
+        <Routes>
+          <Route path="cast" element={<Casts />} />
+          <Route path="reviews" element={<Reviews />} />
+        </Routes>
+      </Suspense>
     </>
   );
 };
