@@ -18,9 +18,8 @@ const Casts = () => {
       try {
         setIsLoading(true);
         const data = await getMovieCredits(movieId);
-        console.log(data);
-
-        setMovieCasts(data);
+        const castArr = data.cast;
+        setMovieCasts(castArr);
       } catch (error) {
         setError(
           toast.error('Sorry, something went wrong. Try again!', {
@@ -49,40 +48,7 @@ const Casts = () => {
         />
       )}
       {error && <ToastContainer />}
-      <CastList casts={movieCasts} />
-      {/* <NavLink className="back" to={backLinkHref.current}>
-        Go back
-      </NavLink>
-      {isLoading && (
-        <Grid
-          height="80"
-          width="80"
-          color="#4fa94d"
-          ariaLabel="grid-loading"
-          radius="12.5"
-          wrapperStyle={{}}
-          wrapperClass=""
-          visible={true}
-        />
-      )}
-      {error && <ToastContainer />}
-
-      {movieCard && <MovieCard movie={movieCard} />}
-
-      <h3> Additional information</h3>
-      <ul>
-        <li>
-          <NavLink to="cast">Casts</NavLink>
-        </li>
-        <li>
-          <NavLink to="reviews">Reviews</NavLink>
-        </li>
-      </ul>
-
-      <Routes>
-        <Route path="cast" element={<Casts />} />
-        <Route path="reviews" element={<Reviews />} />
-      </Routes> */}
+      {movieCasts && <CastList casts={movieCasts} />}
     </>
   );
 };
