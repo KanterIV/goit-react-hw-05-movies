@@ -28,7 +28,6 @@ const MovieDetails = () => {
       try {
         setIsLoading(true);
         const data = await getMovieById(movieId);
-        console.log(data);
 
         setMovieCard(data);
       } catch (error) {
